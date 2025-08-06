@@ -54,7 +54,7 @@ class AuthController extends Controller
             ]
         ]);
 
-        echo "SUCCESS LOGIN";
+        return redirect('/');
     }
 
     public function logout()
