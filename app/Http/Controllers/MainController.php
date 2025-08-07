@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\Opetations;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 
 class MainController extends Controller
-{
+{  
     public function index()
     {
         $id = session('user.id');
@@ -26,11 +26,13 @@ class MainController extends Controller
 
     public function editNote($id)
     {
-        echo "Editing a note: ". Crypt::decrypt($id);
+        $id = Opetations::decryptId($id);
+        echo "I'm editing note with id = $id";
     }
 
     public function deleteNote($id)
     {
-        echo "Deleting a note: ". Crypt::decrypt($id);
+        $id = Opetations::decryptId($id);
+        echo "I'm deleting note with id = $id";
     }
 }
