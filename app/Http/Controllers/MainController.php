@@ -56,8 +56,16 @@ class MainController extends Controller
     public function editNote($id)
     {
         $id = Opetations::decryptId($id);
-        echo "I'm editing note with id = $id";
+        $note = Note::find($id);
+
+        return view("edit_note", compact("note"));
     }
+
+    public function editNoteSubmit($id)
+    {
+        echo "oi";
+    }
+
 
     public function deleteNote($id)
     {
