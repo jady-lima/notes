@@ -94,7 +94,6 @@ class MainController extends Controller
         return redirect()->route("index");
     }
 
-
     public function deleteNote($id)
     {
         $id = Opetations::decryptId($id);

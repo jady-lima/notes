@@ -7,7 +7,6 @@
 
                 @include('top_bar')
 
-                <!-- label and cancel -->
                 <div class="row">
                     <div class="col">
                         <p class="display-6 mb-0">EDIT NOTE</p>
@@ -19,7 +18,6 @@
                     </div>
                 </div>
 
-                <!-- form -->
                 <form action="{{ route('editNoteSubmit') }}" method="post">
                     @csrf
                     <input type="hidden" name="note_id" value="{{ Crypt::encrypt($note->id) }}">

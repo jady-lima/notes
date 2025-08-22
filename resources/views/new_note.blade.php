@@ -7,11 +7,11 @@
 
                 @include('top_bar')
 
-                <!-- label and cancel -->
                 <div class="row">
                     <div class="col">
                         <p class="display-6 mb-0">NEW NOTE</p>
                     </div>
+                    
                     <div class="col text-end">
                         <a href="{{ route("index") }}" class="btn btn-outline-danger">
                             <i class="fa-solid fa-xmark"></i>
@@ -19,7 +19,6 @@
                     </div>
                 </div>
 
-                <!-- form -->
                 <form action="{{ route('newNoteSubmit') }}" method="post">
                     @csrf
 
@@ -49,9 +48,7 @@
                             <button type="submit" class="btn btn-secondary px-5"><i class="fa-regular fa-circle-check me-2"></i>Save</button>
                         </div>
                     </div>
-
                 </form>
-                
             </div>
         </div>
     </div>
