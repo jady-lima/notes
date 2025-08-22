@@ -6,9 +6,6 @@ use App\Models\Note;
 use App\Models\User;
 use App\Services\Opetations;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
-
-use function Laravel\Prompts\note;
 
 class MainController extends Controller
 {  
@@ -97,6 +94,14 @@ class MainController extends Controller
     public function deleteNote($id)
     {
         $id = Opetations::decryptId($id);
-        echo "I'm deleting note with id = $id";
+
+        $note = Note::find($id);
+
+        return view("delete_note", ['note' => $note]);
+    }
+
+    public function deleteNoteConfirm()
+    {
+
     }
 }
