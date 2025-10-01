@@ -12,7 +12,7 @@ class Opetations
         try {
             $id = Crypt::decrypt($id);
         } catch (DecryptException $e) {
-            return redirect()->route('index');
+            return null;
         }
 
         return $id;
