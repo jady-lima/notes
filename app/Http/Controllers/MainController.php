@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditNoteRequest;
+use App\Http\Requests\NewNoteRequest;
 use App\Models\Note;
 use App\Models\User;
 use App\Services\Opetations;
@@ -26,22 +28,9 @@ class MainController extends Controller
         return view("new_note");
     }
 
-    public function newNoteSubmit(Request $request)
+    public function newNoteSubmit(NewNoteRequest $request)
     {
-        $request->validate(
-            [
-                'text_title' => 'required|min:3|max:200',
-                'text_note' => 'required|min:3|max:3000'
-            ],
-            [
-                'text_title.required' => 'Oops! Title is required. Please enter a valid title address.',
-                'text_title.min' => '"Oops! Title can have a minimum of :min characters',
-                'text_title.max' => '"Oops! Title can have a maximum of :max  characters',
-                'text_note.required' => 'Oops! Note is required.',
-                'text_note.min' => '"Oops! Note can have a minimum of :min characters',
-                'text_note.max' => '"Oops! Note can have a maximum of :max  characters',
-            ]
-        );
+        $request->validated();
 
         $id = session("user.id");
 
@@ -60,28 +49,15 @@ class MainController extends Controller
         if(!$id) {
             return redirect()->route("index");
         }
-        
+
         $note = Note::find($id);
 
         return view("edit_note", compact("note"));
     }
 
-    public function editNoteSubmit(Request $request)
+    public function editNoteSubmit(EditNoteRequest $request)
     {
-        $request->validate(
-            [
-                'text_title' => 'required|min:3|max:200',
-                'text_note' => 'required|min:3|max:3000'
-            ],
-            [
-                'text_title.required' => 'Oops! Title is required. Please enter a valid title address.',
-                'text_title.min' => '"Oops! Title can have a minimum of :min characters',
-                'text_title.max' => '"Oops! Title can have a maximum of :max  characters',
-                'text_note.required' => 'Oops! Note is required.',
-                'text_note.min' => '"Oops! Note can have a minimum of :min characters',
-                'text_note.max' => '"Oops! Note can have a maximum of :max  characters',
-            ]
-        );
+        $request->validated();
 
         if($request->note_id == null) {
             return redirect()->route("index");
