@@ -15,6 +15,7 @@ class MainController extends Controller
 
         $notes = User::find($id)
                     ->notes()
+                    ->whereNull('deleted_at')
                     ->get();
 
         return view("home", compact('notes'));
@@ -100,8 +101,12 @@ class MainController extends Controller
         return view("delete_note", ['note' => $note]);
     }
 
-    public function deleteNoteConfirm()
+    public function deleteNoteConfirm($id)
     {
+        $id = Opetations::decryptId($id);
+        $note = Note::find($id)->first();
+        $note->delete();
 
+        return redirect()->route("index");
     }
 }
